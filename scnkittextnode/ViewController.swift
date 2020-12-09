@@ -30,13 +30,10 @@ class ViewController: NSViewController {
         text.string = NSAttributedString(string: textStr,
                                          attributes: [NSAttributedString.Key.font :
                                                         NSFont.systemFont(ofSize: 5)])
-        text.font = .systemFont(ofSize: 10)
-        
-        
+        text.flatness = 0.01
         
         let textNode = SCNNode(geometry: text)
         scene.rootNode.addChildNode(textNode)
-        
     }
 
     override var representedObject: Any? {
