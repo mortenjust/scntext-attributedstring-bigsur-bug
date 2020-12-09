@@ -6,13 +6,37 @@
 //
 
 import Cocoa
+import SceneKit
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var scnView: SCNView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let scene = SCNScene(named: "Scene.scn", inDirectory: "Art.scnassets", options: nil)!
+        scnView.scene = scene
+        scnView.allowsCameraControl = true
+        scnView.showsStatistics = true
+        scnView.pointOfView?.camera?.zFar = 1000
+
+        let textStr = "abcdefghijklmnopqrstuvwxyz"
+        let text = SCNText()
+        text.extrusionDepth = 0
+        text.string = NSAttributedString(string: textStr,
+                                         attributes: [NSAttributedString.Key.font :
+                                                        NSFont.systemFont(ofSize: 5)])
+        text.font = .systemFont(ofSize: 10)
+        
+        
+        
+        let textNode = SCNNode(geometry: text)
+        scene.rootNode.addChildNode(textNode)
+        
     }
 
     override var representedObject: Any? {
